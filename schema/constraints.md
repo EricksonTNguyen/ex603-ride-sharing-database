@@ -36,7 +36,7 @@
 
 <ul>
     Justification: If a badge is deleted, the corresponding Awards record should also be removed becaused the referenced badge no longer exists.
-</ul
+</ul>
 
 ## **Attributes**
 
