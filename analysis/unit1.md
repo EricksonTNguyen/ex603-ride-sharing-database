@@ -1,0 +1,23 @@
+# Unit 1
+
+## Modelling Justification
+
+The database design uses five relations: Riders, Drivers, Trips, Badges, and Awards. The main design objective is to represent riders, drivers, trips, and driver awards without unnecessary duplication while maintaining strong data integrity. The entity relationships are represented through foreign keys, with Trips connecting riders and drivers and Awards resolving the many-to-many relationship between Drivers and Badges.
+
+Primary keys were selected to uniquely identify each entity and relationship. Riders.rider_id, Drivers.driver_id, Trips.trip_id, and Badges.badge_id are used as single-attribute primary keys because each represents a unique identifier for its respective entity. These identifiers are preferable to names because names are not guaranteed to be unique and may change over time. Trips.trip_id is particularly important because multiple trips may involve the same rider and driver, so a combination of rider and driver would not uniquely identify a trip. The Awards relation uses a composite primary key consisting of (driver_id, badge_id). This ensures that the same badge cannot be awarded to the same driver more than once while still allowing a driver to receive multiple badges and a badge to be awarded to multiple drivers.
+
+The ON DELETE behaviour is designed according to the importance and dependency of the data. For Trips.driver_id and Trips.rider_id, ON DELETE RESTRICT is recommended. Trips contain historical information such as pickup time, duration, and fare amount, so deleting a driver or rider should not automatically remove their historical trips. Restricting deletion prevents accidental loss of this information and preserves referential integrity. In contrast, Awards.driver_id and Awards.badge_id use ON DELETE CASCADE. Awards are associative records whose purpose depends entirely on the existence of both a driver and a badge. If either parent record is deleted, the corresponding award relationship is no longer meaningful, so automatically deleting the dependent Awards rows is appropriate.
+
+Several rules are enforced directly in the database rather than relying solely on the application. Primary keys enforce uniqueness and prevent NULL values, while foreign keys ensure that every referenced driver, rider, and badge actually exists. The specified data types enforce domain constraints, such as integer identifiers and numeric fare amounts. Additional CHECK constraints can enforce business rules such as duration > 0, fare_amount >= 0, and filter >= 0, preventing invalid values regardless of which application or process inserts the data. pickup_time can also be defined as NOT NULL because a trip without a pickup time would be incomplete. The composite primary key on Awards enforces uniqueness of each driver-badge combination.
+
+Enforcing these rules in the schema provides a consistent safeguard against invalid data. Application-level validation can still provide user-friendly error messages, but the database remains the final defense for maintaining data integrity. This approach ensures that the same constraints apply to all applications and processes accessing the database.
+
+## Reflection
+
+One design decision that another designer could reasonably make differently is the ON DELETE behaviour for the Awards relationship. I chose ON DELETE CASCADE for both Awards.driver_id and Awards.badge_id, while using ON DELETE RESTRICT for the foreign keys in Trips. A different designer could choose RESTRICT for all foreign keys, prioritising preservation of every relationship record.
+
+My choice is based on the expected read and write patterns of the platform. Trips are likely to be read frequently as historical records for fares, durations, pickup times, driver activity, and rider activity. Because these records contain valuable historical information, deleting them automatically when a driver or rider is removed would be undesirable. RESTRICT therefore protects against accidental loss during relatively infrequent delete operations.
+
+Awards have a different usage pattern. They primarily represent the current relationship between drivers and badges and are likely to be read when displaying a driver's achievements or determining which drivers hold a particular badge. If a driver or badge is removed, the corresponding award relationship no longer has meaningful information of its own. Using CASCADE allows these dependent rows to be removed automatically, simplifying writes and preventing orphaned records.
+
+Although RESTRICT everywhere would be a great from an preservation angle, the mixed approach better reflects the distinction between persistent historical trip data and dependent award relationships.
