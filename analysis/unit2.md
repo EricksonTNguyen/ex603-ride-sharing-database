@@ -9,7 +9,7 @@
 | `fk_awards_driver` -- Awards.driver_id -> Drivers.driver_id | `CASCADE`  | Removes a driver's associated award records when that driver is deleted because the awards relationship no longer has a purpose.|
 | `fk_awards_badge` -- Awards.badge_id -> Badges.badge_id   | `CASCADE`  | Removes associated award records when a badge is deleted because the award can no longer reference an existing badge.|
 
-# CHECK Constraints
+## CHECK Constraints
 
 | CHECK Constraint                             | Invalid State Description                   | Reasoning |
 | -------------------------------------------- | ------------------------------------------- | --------- |
