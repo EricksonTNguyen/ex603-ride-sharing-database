@@ -1,0 +1,5 @@
+# Unit 3 - Dashboard Findings
+
+After reviewing the data, we found that the query left out trips with no cancellation reason recorded. Out of 200 trips, 166 had no cancellation reason, so the dashboard only showed 26 trips instead of the 192 that met the query’s intended conditions. The problem was how the query handled missing information. It ran without errors, so the team assumed it was correct without checking its logic. The query needs to be fixed, and the results need to be checked before the dashboard is used to make decisions.
+
+The quarterly payout should stay on hold until the corrected report has been reviewed. The team should confirm the results, calculate the correct payout, and share the findings with leadership. Leadership can then reconsider the payout based on the corrected information.
