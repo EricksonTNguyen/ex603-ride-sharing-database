@@ -354,7 +354,7 @@ ORDER BY
 
 
 -- 5.2.C Write two queries that identify producers who have never had an event and compare them.
--- Requirement: 
+-- Requirement: SELECT, WHERE, NOT EXISTS, EXCEPT, ORDER BY
 
 -- NOT EXISTS QUERY:
 SELECT
