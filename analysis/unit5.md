@@ -53,3 +53,7 @@ A4: Understanding join algorithms helps identify potential performance bottlenec
 Q5: What changes to the data or database might make another join algorithm more appropriate?
 
 A5: If the tables grow significantly, PostgreSQL might choose a different join algorithm depending on the number of rows, available indexes, and how the data is sorted.
+
+## Reflection
+
+I think that changes to the amount of data and the database schema could cause PostgreSQL to choose a different join algorithm. For example, as the trips, riders, and drivers tables grow, joining them may require more processing. PostgreSQL might choose a different join operation for larger tables because it could potentially be more efficient than what was already being used. Additionally, indexes could also influence the execution plan. Adding indexes to columns used in join conditions, such as rider_id and driver_id, could make a different join operation more efficient at finding matching records faster. Furthermore, an index on requested_at could help when sorting or filtering trips by date and time. The number of matching records matters as well. If a join returns only a small number of matches, one algorithm may be more efficient than another. If many records match, PostgreSQL may choose a different approach. Overall, table size, indexes, and data distribution can affect both the selected join algorithm and query performance.
