@@ -22,4 +22,14 @@
 
 4. What does a gap mean in your platform: a data quality problem, a real stop in activity, or a side effect of how events were recorded? Each needs a different response. Say which one yours is and how you know.
 
-        I chose Driver 1 as the producer for this analysis. Through the query, I found an 87-day gap between trips. I would classify this as an actual stop in activity, as opposed to a data quality problem. The query showed that no trips for Driver 1 appeared in the data set during that period. To make sure, the platform should double check driver activity records before making the call on a driver's work stoppage. In the event that is the case, the platform should reach out to the driver before making any decision like disabling or setting the Driver's account to inacive.
+        I chose Driver 1 as the producer for this analysis. Through the query, I found an 87-day gap between trips. I would classify this as an actual stop in activity, as opposed to a data quality problem. The query showed that no trips for Driver 1 appeared in the data set during that period. To make sure, the platform should double check driver activity records before making the call on a driver's work stoppage. In the event that is the case, the platform should reach out to the driver before making any decision like disabling or setting the Driver's account to inactive.
+
+## Task 6.3 Write Up
+
+1. Name the feature in your platform that top-N would power. Explain why three is the right number, rather than one or ten.
+
+        The top-N query could be used to power a leaderboard showing each driver's three highest-fare trips. I think three is a good number because it gives users more than just one example of a driver's highest fare, while still keeping the list short and easy to review. Showing only one trip might not give enough information, while showing ten could make the leaderboard too long to use. Three gives users a quick snapshot into the profits gained by each individual driver.
+
+2. What would a large month-over-month change mean in your domain, and what should someone do about it? A number nobody acts on is not a metric.
+
+        A large month-over-month change in the total fares could mean the platform is experiencing a significant increase or decrease in activity or revenue. For example, a large decrease could indicate fewer trips, lower fares, or an issue with how trip data is being recorded. On the flip side, a large increase could indicate more demand or higher fares due to some event like surge pricing. In the case of the large decrease, someone should investigate into it. Look at the total fares for the month as compared to those prior, or check the total fares for the month to ensure that the data is sound. Use the database as a way to get business metrics and action based off that.
