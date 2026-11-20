@@ -159,61 +159,6 @@ One limitation of this analysis is that it uses a relatively small, fixed datase
 
 ## 7. Video Presentation
 
-[Watch the project presentation](YOUR_VIDEO_LINK_HERE)
+[Watch the project presentation](https://bostonu.zoom.us/rec/share/gkYNBsNaBEHi4w0CUIgV8Mn7R3LSuQGjcHzbcZfbcdAh-78OPwiLKXbWtek_1GQH.SptG8jKc958PpIqc)
 
-## 8. How to Run It
-
-The project uses PostgreSQL 14. To run the database, you need PostgreSQL installed and access to the `psql` command-line tool.
-
-### Step 1: Create the database
-
-Open a terminal and create the database:
-
-```bash
-createdb rideshare
-```
-
-Alternatively, create a database named `rideshare` using your PostgreSQL database management tool.
-
-### Step 2: Create the schema
-
-Run the Unit 3 DDL file to create the tables, relationships, and constraints:
-
-```bash
-psql -d rideshare -f path/to/unit3_ddl.sql
-```
-
-Replace the file path with the actual location of the DDL file.
-
-### Step 3: Load the data
-
-If the project includes a separate SQL seed or data file, load it after creating the schema:
-
-```bash
-psql -d rideshare -f path/to/seed.sql
-```
-
-If the DDL file already inserts the data, this step is not necessary.
-
-### Step 4: Execute a query
-
-Run an individual SQL file using:
-
-```bash
-psql -d rideshare -f path/to/query.sql
-```
-
-To open an interactive PostgreSQL session instead:
-
-```bash
-psql -d rideshare
-```
-
-You can then execute SQL statements directly or use:
-
-```sql
-\i path/to/query.sql
-```
-
-**Note:** If your PostgreSQL installation requires a username or password, you may need to provide the `-U` option or configure your connection credentials.
 
